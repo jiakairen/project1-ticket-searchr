@@ -1,0 +1,16 @@
+<h1>Your bookings:</h1>
+
+<% if @tickets.any? %>
+    <% @tickets.each do |ticket| %>
+        <h3><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %></h3>
+        <p>From <%= ticket.flight.origin %> to <%= ticket.flight.destination %></p>
+        <p>Departure: <%= ticket.flight.departure %>, arrival: <%= ticket.flight.arrival%></p>
+        <p>Travelling class: <%= ticket.class_type %></p>
+        <p>Fare paid: <%= number_to_currency ticket.price %></p>
+        <%= link_to "Cancel Booking", cancel_path(ticket.id) %>
+        <p>----------</p>
+    <% end %>
+    <p>End of record.</p>
+<% else %>
+    <p>You don't have any bookings. <%= link_to 'Book now!', flights_path %></p>
+<% end %>

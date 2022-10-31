@@ -1,0 +1,17 @@
+<h1>User Insights</h1>
+
+<% @users.each do |user| %>
+    <h4><%= user.first_name.present? ? user.first_name + ' ' + user.last_name : user.email %></h4>
+    <p>Balance: <%= number_to_currency user.balance %></p>
+    <% spent = 0 %>
+    <% user.tickets.each do |ticket| %>
+        <% spent += ticket.price %>
+    <% end %>
+    <p>Money spent: <%= number_to_currency spent %></p>
+    <% if user.admin? %>
+        <p class="warning">This user is an admin.</p>
+    <% end %>
+    <p>----------</p>
+<% end %>
+
+<p>+++ End of report +++</p>

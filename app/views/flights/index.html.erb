@@ -1,0 +1,30 @@
+<h1>Search for flights</h1>
+
+<%= form_tag '/flights', method: "GET" do %>
+    <%= label_tag :search_by_origin, "Origin: " %>
+    <%= text_field_tag :search_by_origin, params[:search_by_origin] %>
+
+    <%= label_tag :search_by_destination, "Destination: " %>
+    <%= text_field_tag :search_by_destination, params[:search_by_destination] %>
+
+    <%= submit_tag "Search" %>
+<% end %>
+
+<% @flights.each do |flight| %>
+    <p><%= flight.airline.code %><%= flight.flight_number %> (<%= flight.airline.name %>)</p>
+    <p>From: <%= flight.origin %></p>
+    <p>Departure: <%= flight.departure %></p>
+    <p>To: <%= flight.destination %></p>
+    <p>Arrival: <%= flight.arrival %></p>
+    <% if flight.tickets.where(user_id: nil).any? %>
+        <% prices = [] %>
+        <% flight.tickets.each do |ticket| %>
+            <% prices << ticket.price %>
+            <% @lowest = prices.min %>
+        <% end %>
+        <p><%= pluralize flight.tickets.where(user_id: nil).count, 'seat' %> remaining from <%= number_to_currency @lowest %> - <%= link_to 'Book Now!', flight_path(flight.id) %></p>
+    <% else %>
+        <p>Sold out!</p>
+    <% end %>
+    <p>-------------------------</p>
+<% end %>

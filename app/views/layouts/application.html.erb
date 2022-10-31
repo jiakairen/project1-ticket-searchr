@@ -10,6 +10,30 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav>
+        <%= link_to 'Home', root_path %>
+        <%= link_to 'Browse Airlines', airlines_path %>
+        <% if @current_user.present? %>
+          <%= link_to 'Edit Profile', edit_user_path(@current_user.id) %>
+          <%= link_to 'View My Bookings', user_path(@current_user.id) %>
+          <% if @current_user.first_name.present? %>
+            <% if @current_user.admin? %>
+              <%= link_to 'User Insights', users_path %>
+            <% end %>
+            <%= link_to "Log Out (#{ @current_user.first_name } #{ @current_user.last_name })", login_path, :method => 'delete' %>
+          <% else %>
+            <%= link_to "Log Out (#{ @current_user.email })", login_path, :method => 'delete' %>
+          <% end %>
+        <% else %>
+          <%= link_to 'Register', new_user_path %>
+          <%= link_to 'Log In', login_path %>
+        <% end %>
+      </nav>
+      
+      <main>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

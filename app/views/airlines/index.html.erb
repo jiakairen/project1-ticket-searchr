@@ -1,0 +1,5 @@
+<h1>Browse our Airlines</h1>
+
+<% @airlines.each do |airline| %>
+    <%= image_tag airline.logo, :class => 'thumbnail' %>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>You are about to cancel your flight.</h1>
+
+<p>Please review the information below:</p>
+<h3><%= @ticket.flight.airline.code %><%= @ticket.flight.flight_number %></h3>
+<p>From <%= @ticket.flight.origin %> to <%= @ticket.flight.destination %></p>
+<p>Departure: <%= @ticket.flight.departure %>, arrival: <%= @ticket.flight.arrival%></p>
+<p>Travelling class: <%= @ticket.class_type %></p>
+<p>Fare paid: <%= number_to_currency @ticket.price %></p>
+<p>Warning: You might not be able to rebook the same flight once cancelled.</p>
+<%= link_to "Confirm Cancellation", unlink_path(@ticket.id), :method => 'post', :data => {:confirm => 'Are you sure?'} %>

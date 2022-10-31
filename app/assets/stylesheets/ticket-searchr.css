@@ -1,0 +1,15 @@
+.container {
+    max-width: 960px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
+
+.thumbnail {
+    height: 50px;
+    margin: 20px;
+}
