@@ -1,11 +1,18 @@
 class FlightsController < ApplicationController
   def index
-    @flights = Flight.all
+    all_flights = Flight.all
     if params[:search_by_origin] != ""
-      @flights = @flights.where("origin = ?", params[:search_by_origin]).where("destination = ?", params[:search_by_destination])
+      date = params[:search_by_date]
+      origin = params[:search_by_origin]
+      destination = params[:search_by_destination]
+      # raise "hell"
+      @flights = search_direct all_flights, date, origin, destination
+      unless @flights.any?
+        search_route all_flights, date, origin, destination
+      end
     end
   end
-
+  
   def show
     @flight = Flight.find params[:id]
     tickets = @flight.tickets
@@ -17,5 +24,34 @@ class FlightsController < ApplicationController
   
   private
   
+  def search_route all_flights, date, origin, destination
+    route = [] << origin
+    p route
+    if search_direct(all_flights, date, origin, destination).any?
+      results = search_direct(all_flights, date, origin, destination)
+      return 
+    end
 
+    puts "+++++++++No direct flights found, searching route tree+++++++++++++"
+    flights = all_flights.where("DATE(departure) = ?", date).where("origin = ?", origin)
+    unless flights.any?
+      puts "No flights departing on selected date from selected origin."
+      return []
+    end
+    inter_flights = []
+    inter_destination = []
+    flights.each do |flight|
+      inter_destination << flight.destination
+    end
+    p inter_destination.uniq!
+
+    inter_destination.each do |origin|
+      puts "searching #{origin} -> #{destination}"
+      search_route all_flights, date, origin, destination
+    end
+  end
+
+  def search_direct all_flights, date, origin, destination
+    all_flights.where("origin = ?", origin).where("destination = ?", destination).where("DATE(departure) = ?", date)
+  end
 end

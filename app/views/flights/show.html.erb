@@ -1,4 +1,5 @@
 <h1><%= @flight.airline.code %><%= @flight.flight_number %></h1>
+<%= image_tag @flight.airline.logo, :class => 'thumbnail' %>
 <p>From: <%= @flight.origin %></p>
 <p>To: <%= @flight.destination %></p>
 <p>Departure time: <%= @flight.departure %></p>
@@ -6,8 +7,12 @@
 
 <% if @economy_tickets.any? %>
     <p><%= number_to_currency @economy_tickets.first.price %> - <%= link_to 'Book Economy', ticket_path(@economy_tickets.first.id) %> (<%= pluralize @economy_available, "seat" %> remaining)</p>
+<% else %>
+    <p>Economy unavailable - Sold out.</p>
 <% end %>
 
 <% if @business_tickets.any? %>
     <p><%= number_to_currency @business_tickets.first.price %> - <%= link_to 'Book Business', ticket_path(@business_tickets.first.id) %> (<%= pluralize @business_available, "seat" %> remaining)</p>
+<% else %>
+    <p>Business unavailable - Sold out.</p>
 <% end %>

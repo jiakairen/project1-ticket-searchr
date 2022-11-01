@@ -1,16 +1,30 @@
-<h1>Search for flights</h1>
+<h1 class="text-center">Search for flights</h1>
 
-<%= form_tag '/flights', method: "GET" do %>
-    <%= label_tag :search_by_origin, "Origin: " %>
-    <%= text_field_tag :search_by_origin, params[:search_by_origin] %>
+<div class="center-div">
+    <%= form_tag '/flights', method: "GET" do %>
+        <div class="search-fields-container">
+            <div class="col-md-3 search-field">
+                <%= label_tag :search_by_origin, "Origin: ", :class => "form-label" %>
+                <%= text_field_tag :search_by_origin, params[:search_by_origin], :required => true, :class => "form-control", :placeholder => 'SYD' %>
+            </div>
 
-    <%= label_tag :search_by_destination, "Destination: " %>
-    <%= text_field_tag :search_by_destination, params[:search_by_destination] %>
+            <div class="col-md-3 search-field">
+                <%= label_tag :search_by_destination, "Destination: ", :class => "form-label" %>
+                <%= text_field_tag :search_by_destination, params[:search_by_destination], :required => true, :class => "form-control", :placeholder => 'BNE' %>
+            </div>
 
-    <%= submit_tag "Search" %>
-<% end %>
+            <div class="col-md-3 search-field">
+                <%= label_tag :search_by_date, "Departure Date: ", :class => "form-label" %>
+                <%= date_field_tag :search_by_date, params[:search_by_date], :required => true, :class => "form-control" %>
+            </div>
+        </div>
+
+            <%= submit_tag "Search", :class => "search-button btn btn-primary" %>
+    <% end %>
+</div>
 
 <% @flights.each do |flight| %>
+    <%= image_tag flight.airline.logo, :class => 'thumbnail' %>
     <p><%= flight.airline.code %><%= flight.flight_number %> (<%= flight.airline.name %>)</p>
     <p>From: <%= flight.origin %></p>
     <p>Departure: <%= flight.departure %></p>
@@ -28,3 +42,9 @@
     <% end %>
     <p>-------------------------</p>
 <% end %>
+
+<% unless @flights.present? %>
+    <p>No flights found. Consider changing your search criteria.</p>
+<% end %>
+    
+<p>End of search.</p>

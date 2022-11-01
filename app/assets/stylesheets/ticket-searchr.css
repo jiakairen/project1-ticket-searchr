@@ -1,15 +1,27 @@
-.container {
-    max-width: 960px;
-    width: 90%;
-    margin: 0 auto;
-}
-
-.warning {
-    color: red;
-    font-weight: bold;
+* {
+    box-sizing: border-box;
 }
 
 .thumbnail {
     height: 50px;
     margin: 20px;
+}
+
+.center-div {
+    margin: 0 auto;
+}
+
+.search-field {
+    display: inline-block;
+}
+
+.search-button {
+    margin: 10px auto;
+    display: block;
+    width: 400px;
+}
+
+.search-fields-container {
+    display: flex;
+    justify-content: space-around;
 }
