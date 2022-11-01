@@ -13,12 +13,12 @@
     <div class="container">
       <nav>
         <%= link_to 'Home', root_path %>
-        <%= link_to 'Browse Airlines', airlines_path %>
         <% if @current_user.present? %>
           <%= link_to 'Edit Profile', edit_user_path(@current_user.id) %>
           <%= link_to 'View My Bookings', user_path(@current_user.id) %>
           <% if @current_user.first_name.present? %>
             <% if @current_user.admin? %>
+              <%= link_to 'Add Flight to Airline', airlines_path %>
               <%= link_to 'User Insights', users_path %>
             <% end %>
             <%= link_to "Log Out (#{ @current_user.first_name } #{ @current_user.last_name })", login_path, :method => 'delete' %>
