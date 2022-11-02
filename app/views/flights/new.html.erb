@@ -1,0 +1,22 @@
+<h1>Add New Flight to <%= @airline.name %> (<%= @airline.code %>)</h1>
+
+<%= image_tag @airline.logo, :class => 'thumbnail' %>
+
+<%= form_for [@airline, @flight] do |f| %>
+    <%= f.label :flight_number %>
+    <%= f.number_field :flight_number, :required => true, :placeholder => '123', :min => 0 %>
+
+    <%= f.label :origin %>
+    <%= f.text_field :origin, :required => true, :placeholder => 'SYD' %>
+
+    <%= f.label :destination %>
+    <%= f.text_field :destination, :required => true, :placeholder => 'BNE' %>
+
+    <%= f.label :departure, "Departure Time" %>
+    <%= f.datetime_field :departure, :required => true %>
+
+    <%= f.label :arrival, "Arrival Time" %>
+    <%= f.datetime_field :arrival, :required => true %>
+
+    <%= f.submit "Add flight" %>
+<% end %>

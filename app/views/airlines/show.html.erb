@@ -1,0 +1,10 @@
+<h1><%= @airline.name %> (<%= @airline.code %>)</h1>
+
+<%= image_tag @airline.logo, :class => 'thumbnail' %>
+
+<p>Total number of flights on record: <%= @airline.flights.count %></p>
+
+<%= link_to "Add more #{ @airline.code } flights to system", new_airline_flight_path(@airline.id) %>
+
+<%= link_to 'Edit Airline', edit_airline_path(@airline) %>
+<%= link_to "Delete Airline", @airline, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>

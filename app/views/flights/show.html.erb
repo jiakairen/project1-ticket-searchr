@@ -16,3 +16,7 @@
 <% else %>
     <p>Business unavailable - Sold out.</p>
 <% end %>
+
+<% if @current_user.present? && @current_user.admin? %>
+    <%= link_to 'Add Tickets', new_airline_flight_ticket_path(@flight.airline.id, @flight.id) %>
+<% end %>

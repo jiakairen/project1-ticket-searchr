@@ -1,4 +1,6 @@
 class FlightsController < ApplicationController
+  before_action :check_for_admin, :only => [:new, :create]
+
   def index
     all_flights = Flight.all
     if params[:search_by_origin] != ""
@@ -8,9 +10,21 @@ class FlightsController < ApplicationController
       # raise "hell"
       @flights = search_direct all_flights, date, origin, destination
       unless @flights.any?
-        search_route all_flights, date, origin, destination
+        @viable_routes = search_route all_flights, date, origin, destination
       end
     end
+  end
+
+  def new
+    @flight = Flight.new
+    @airline = Airline.find params[:airline_id]
+  end
+
+  def create
+    flight = Flight.create flight_params
+    airline = Airline.find params[:airline_id]
+    airline.flights << flight
+    redirect_to airline
   end
   
   def show
@@ -21,37 +35,59 @@ class FlightsController < ApplicationController
     @business_tickets = tickets.where("class_type = ?", "Business").where(user_id: nil)
     @business_available = @business_tickets.count
   end
+
+  def destroy
+    flight = Flight.find params[:id]
+    flight.destroy
+    redirect_to flights_path
+  end
   
   private
   
   def search_route all_flights, date, origin, destination
-    route = [] << origin
-    p route
-    if search_direct(all_flights, date, origin, destination).any?
-      results = search_direct(all_flights, date, origin, destination)
-      return 
+    inter_destination = find_unique_destinations all_flights, date, origin
+    puts "new inter destinations - #{inter_destination}"
+    if inter_destination.nil?
+      puts "Error 0 - No flights departing on selected date from selected origin."
+      return false
     end
 
-    puts "+++++++++No direct flights found, searching route tree+++++++++++++"
-    flights = all_flights.where("DATE(departure) = ?", date).where("origin = ?", origin)
-    unless flights.any?
-      puts "No flights departing on selected date from selected origin."
-      return []
+    routes = Array.new(inter_destination.size).fill(origin).zip(inter_destination)
+    puts "Step 1 - #{routes}"
+    routes.map { |route|
+      stop = find_unique_destinations(all_flights, date, route.last)
+      puts "new stop is #{stop}"
+      route << stop
+      route.flatten!
+      route.uniq!
+    }
+
+    viable_routes = []
+    routes.each do |route|
+      p route
+      if (route.include? origin) && (route.include? destination)
+        viable_routes << route
+      end
     end
-    inter_flights = []
+    viable_routes
+  end
+
+  def find_unique_destinations all_flights, date, origin
+    puts "checking from #{origin} "
+    flights = all_flights.where("DATE(departure) = ?", date).where("origin = ?", origin)
     inter_destination = []
     flights.each do |flight|
+      puts "adding #{flight.destination} to inter)destination"
       inter_destination << flight.destination
     end
-    p inter_destination.uniq!
-
-    inter_destination.each do |origin|
-      puts "searching #{origin} -> #{destination}"
-      search_route all_flights, date, origin, destination
-    end
+    inter_destination.uniq
   end
 
   def search_direct all_flights, date, origin, destination
     all_flights.where("origin = ?", origin).where("destination = ?", destination).where("DATE(departure) = ?", date)
+  end
+
+  def flight_params
+    params.require(:flight).permit(:flight_number, :origin, :destination, :departure, :arrival)
   end
 end

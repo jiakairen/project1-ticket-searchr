@@ -1,0 +1,15 @@
+<%= form_for @airline do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => true, :placeholder => "Goose Air" %>
+
+    <%= f.label :code, "IATA Code" %>
+    <%= f.text_field :code, :required => true, :placeholder => "GA" %>
+
+    <%= f.label :logo, "Logo Link" %>
+    <%= f.text_field :logo, :required => true %>
+
+    <%= f.label :country, "Country of Registration" %>
+    <%= f.text_field :country, :placeholder => "Australia" %>
+
+    <%= f.submit %>
+<% end %>

@@ -2,12 +2,22 @@
     box-sizing: border-box;
 }
 
+h1 {
+    margin: 10px;
+}
+
 .thumbnail {
     height: 50px;
     margin: 20px;
 }
 
 .center-div {
+    margin: 0 auto;
+    border-bottom: 2px solid #3e3d39;
+    padding-bottom: 10px;
+}
+
+.nav-container-center {
     margin: 0 auto;
 }
 
@@ -16,12 +26,24 @@
 }
 
 .search-button {
-    margin: 10px auto;
+    margin: 15px auto;
     display: block;
-    width: 400px;
+    width: 250px;
 }
 
 .search-fields-container {
     display: flex;
     justify-content: space-around;
+}
+
+.dropdown-item:active {
+    background-color: #3e3d39;
+}
+
+.search-button {
+    background-color: #3e3d39;
+}
+
+.search-button:hover {
+    background-color: #14130e;
 }

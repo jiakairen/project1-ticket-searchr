@@ -1,8 +1,10 @@
-<h1>Your bookings:</h1>
+<h1>Welcome <%= @current_user.first_name.present? ? "#{ @current_user.first_name } #{ @current_user.last_name }" : @current_user.email %></h1>
+<h2>Your bookings:</h2>
 
 <% if @tickets.any? %>
     <% @tickets.each do |ticket| %>
-        <h3><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %></h3>
+        <h4><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %></h4>
+        <%= image_tag ticket.flight.airline.logo, :class => 'thumbnail' %>
         <p>From <%= ticket.flight.origin %> to <%= ticket.flight.destination %></p>
         <p>Departure: <%= ticket.flight.departure %>, arrival: <%= ticket.flight.arrival%></p>
         <p>Travelling class: <%= ticket.class_type %></p>

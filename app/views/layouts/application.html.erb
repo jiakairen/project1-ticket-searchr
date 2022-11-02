@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project1TicketSearchr</title>
+    <title>Ticket Searchr</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,27 +10,54 @@
   </head>
 
   <body>
-    <div class="container">
-      <nav>
-        <%= link_to 'Home', root_path %>
-        <% if @current_user.present? %>
-          <%= link_to 'Edit Profile', edit_user_path(@current_user.id) %>
-          <%= link_to 'View My Bookings', user_path(@current_user.id) %>
-          <% if @current_user.first_name.present? %>
-            <% if @current_user.admin? %>
-              <%= link_to 'Add Flight to Airline', airlines_path %>
-              <%= link_to 'User Insights', users_path %>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3e3d39;">
+      <div class="container-fluid">
+        <%= link_to 'Ticket Searchr', root_path, :class => 'navbar-brand' %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav-container-center">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <%= link_to 'Home', root_path, :class => 'nav-link active', :data => {"aria-current" => 'page'} %>
+              </li>
+
+            <% if @current_user.present? %>
+            <li class="nav-item">
+              <%= link_to 'Edit Profile', edit_user_path(@current_user.id), :class => 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'View My Bookings', user_path(@current_user.id), :class => 'nav-link' %>
+            </li>
+            <% if @current_user.first_name.present? %>
+              <% if @current_user.admin? %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin Tools
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'Add Flight to Airline', airlines_path, :class => 'dropdown-item' %></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><%= link_to 'User Insights', users_path, :class => 'dropdown-item' %></li>
+                  </ul>
+                </li>
+              <% end %>
+              <%= link_to "Log Out (#{ @current_user.first_name } #{ @current_user.last_name })", login_path, :method => 'delete', :class => 'nav-link logout-btn' %>
+              <% else %>
+              <%= link_to "Log Out (#{ @current_user.email })", login_path, :method => 'delete', :class => 'nav-link logout-btn' %>
+              <% end %>
+            <% else %>
+              <%= link_to 'Register', new_user_path, :class => 'nav-link' %>
+              <%= link_to 'Log In', login_path, :class => 'nav-link' %>
             <% end %>
-            <%= link_to "Log Out (#{ @current_user.first_name } #{ @current_user.last_name })", login_path, :method => 'delete' %>
-          <% else %>
-            <%= link_to "Log Out (#{ @current_user.email })", login_path, :method => 'delete' %>
-          <% end %>
-        <% else %>
-          <%= link_to 'Register', new_user_path %>
-          <%= link_to 'Log In', login_path %>
-        <% end %>
-      </nav>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
       
+    <div class="container">
       <main>
         <%= yield %>
       </main>

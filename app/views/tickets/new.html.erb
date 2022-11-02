@@ -1,0 +1,10 @@
+<h1>Add Tickets to <%= @flight.airline.code%><%= @flight.flight_number %></h1>
+
+<%= image_tag @flight.airline.logo, :class => 'thumbnail' %>
+
+<p>From: <%= @flight.origin %></p>
+<p>To: <%= @flight.destination %></p>
+<p>Departure time: <%= @flight.departure %></p>
+<p>Arrival time: <%= @flight.arrival %></p>
+
+<%= render :partial => 'form' %>

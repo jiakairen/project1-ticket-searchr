@@ -14,4 +14,14 @@ class ApplicationController < ActionController::Base
     def check_for_admin
         redirect_to login_path unless (@current_user.present? && @current_user.admin?)
     end
+
+    def check_for_account_match id_to_check
+        if session[:user_id] == id_to_check.to_i
+            return true
+        else
+            session[:user_id] = nil
+            redirect_to login_path
+            return false
+        end
+    end
 end

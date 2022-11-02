@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_for_admin, :only => [:index]
+  before_action :check_for_login, :only => [:index, :show, :edit, :update]
   
   def index
     @users = User.all
@@ -20,15 +21,25 @@ class UsersController < ApplicationController
   end
 
   def show
-    @tickets = (User.find params[:id]).tickets
+    check_for_account_match params[:id]
+    user = User.find params[:id]
+    @tickets = user.tickets
   end
 
   def edit
+    check_for_account_match params[:id]
     @user = User.find params[:id]
+  end
+
+  def update
+    check_for_account_match params[:id]
+    user = User.find params[:id]
+    user.update user_params
+    redirect_to user_path(user)
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :first_name, :last_name)
   end
 end

@@ -1,0 +1,12 @@
+<%= form_for [@airline, @flight, @ticket] do |f| %>
+    <%= f.label :price %>
+    <%= f.number_field :price, :required => true, :placeholder => "1099" %>
+
+    <%= f.label :class_type, "Class" %>
+    <%= f.select :class_type, Ticket.pluck(:class_type).uniq %>
+
+    <%= label_tag :qty, "Quantity" %>
+    <%= number_field_tag :qty, nil, required: true, placeholder: "10", min: 1 %>
+
+    <%= f.submit "Add tickets" %>
+<% end %>
