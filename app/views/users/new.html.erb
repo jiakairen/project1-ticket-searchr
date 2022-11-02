@@ -1,22 +1,24 @@
-<h1>You are one step away from finding cheap tickets!</h1>
+<div class="half-container">
+    <h1 class="text-center">Register</h1>
 
-<% if @user.errors.any? %>
-    <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-    </ul>
-<% end %>
+    <% if @user.errors.any? %>
+        <ul class="error-msg">
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    <% end %>
 
-<%= form_for @user do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= form_for @user do |f| %>
+        <%= f.label :email, :class => "form-label" %>
+        <%= f.email_field :email, :class => "form-control" %>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+        <%= f.label :password, :class => "form-label" %>
+        <%= f.password_field :password, :class => "form-control" %>
 
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+        <%= f.label :password_confirmation, :class => "form-label" %>
+        <%= f.password_field :password_confirmation, :class => "form-control" %>
 
-    <%= f.submit "Join!" %>
-<% end %>
+        <%= f.submit "Join!", :class => "search-button btn btn-primary" %>
+    <% end %>
+</div>

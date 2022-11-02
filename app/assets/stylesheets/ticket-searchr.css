@@ -21,6 +21,16 @@ h1 {
     margin: 0 auto;
 }
 
+.navbar-brand-right {
+    width: 120px;
+    text-align: right;
+    color: #3e3d39
+}
+
+.navbar-brand-right:hover {
+    color: #3e3d39
+}
+
 .search-field {
     display: inline-block;
 }
@@ -45,5 +55,18 @@ h1 {
 }
 
 .search-button:hover {
+    background-color: #282824;
+}
+
+.search-button:active {
     background-color: #14130e;
+}
+
+.half-container {
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.error-msg {
+    color: red;
 }

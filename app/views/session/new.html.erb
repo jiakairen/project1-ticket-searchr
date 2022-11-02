@@ -1,17 +1,19 @@
-<h1>Log In</h1>
+<div class="half-container">
+    <h1 class="text-center">Log In</h1>
 
-<% if flash[:error].present? %>
-    <h2><%= flash[:error] %></h2>
-<% end %>
+    <% if flash[:error].present? %>
+        <p class="error-msg"><%= flash[:error] %></p>
+    <% end %>
 
-<%= form_tag login_path do %>
-    <%= label_tag :email %>
-    <%= email_field_tag :email %>
+    <%= form_tag login_path do %>
+        <%= label_tag :email, nil, :class => "form-label" %>
+        <%= email_field_tag :email, nil, :class => "form-control" %>
 
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+        <%= label_tag :password, nil, :class => "form-label" %>
+        <%= password_field_tag :password, nil, :class => "form-control" %>
 
-    <%= submit_tag "Log In" %>
-<% end %>
+        <%= submit_tag "Log In", :class => "search-button btn btn-primary" %>
+    <% end %>
 
-<%= link_to 'No account yet? Register now!', new_user_path %>
+    <p class="text-center">No account yet? <%= link_to 'Register now!', new_user_path %></p>
+</div>
