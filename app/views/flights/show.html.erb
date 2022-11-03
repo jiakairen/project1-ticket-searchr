@@ -13,9 +13,9 @@
                 <div class="card-body">
                     <% if @economy_tickets.any? %>
                         <p class="card-title text-center">Economy</p>
-                        <p class="card-title text-center"><%= number_to_currency @economy_tickets.first.price %></p>
+                        <p class="card-title text-center"><%= number_to_currency @economy_tickets.order(:price).first.price %></p>
                         <p class="card-text text-center">(<%= pluralize @economy_available, "seat" %> remaining)</p>
-                        <%= link_to 'Book Economy', ticket_path(@economy_tickets.first.id), :class => 'btn btn-primary search-button card-button' %> 
+                        <%= link_to 'Book Economy', ticket_path(@economy_tickets.order(:price).first.id), :class => 'btn btn-primary search-button card-button' %> 
                     <% else %>
                         <p class="card-title text-center">Economy unavailable - Sold out.</p>
                     <% end %>
@@ -24,9 +24,9 @@
                 <div class="card-body">
                     <% if @business_tickets.any? %>
                         <p class="card-title text-center">Business</p>
-                        <p class="card-title text-center"><%= number_to_currency @business_tickets.first.price %></p>
+                        <p class="card-title text-center"><%= number_to_currency @business_tickets.order(:price).first.price %></p>
                         <p class="card-text text-center">(<%= pluralize @business_available, "seat" %> remaining)</p>
-                        <%= link_to 'Book Business', ticket_path(@business_tickets.first.id), :class => 'btn btn-primary search-button card-button' %> 
+                        <%= link_to 'Book Business', ticket_path(@business_tickets.order(:price).first.id), :class => 'btn btn-primary search-button card-button' %> 
                     <% else %>
                         <p class="card-title text-center">Business unavailable - Sold out.</p>
                     <% end %>
