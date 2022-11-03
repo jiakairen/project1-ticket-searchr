@@ -35,7 +35,7 @@
                     <p class="card-text">To: <%= flight.destination %></p>
                     <p class="card-text">Arrival: <%= flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></p>
                     <% if flight.tickets.where(user_id: nil).any? %>
-                        <p class="card-text"><%= pluralize flight.tickets.where(user_id: nil).count, 'seat' %> remaining from <%= number_to_currency flight.tickets.order(:price).first.price %></p>
+                        <p class="card-text"><%= pluralize flight.tickets.where(user_id: nil).count, 'seat' %> remaining from <%= number_to_currency flight.tickets.where(user_id: nil).order(:price).first.price %></p>
                         <%= link_to 'Book Now!', flight_path(flight.id), :class => 'btn btn-primary search-button card-button' %>
                     <% else %>
                         <p>No seats remaining.</p>

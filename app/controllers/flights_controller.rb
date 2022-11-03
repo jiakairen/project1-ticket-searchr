@@ -29,10 +29,10 @@ class FlightsController < ApplicationController
   
   def show
     @flight = Flight.find params[:id]
-    tickets = @flight.tickets
-    @economy_tickets = tickets.where("class_type = ?", 'Economy').where(user_id: nil)
+    avail_tickets = @flight.tickets.where(user_id: nil)
+    @economy_tickets = avail_tickets.where("class_type = ?", 'Economy')
     @economy_available = @economy_tickets.count
-    @business_tickets = tickets.where("class_type = ?", "Business").where(user_id: nil)
+    @business_tickets = avail_tickets.where("class_type = ?", "Business")
     @business_available = @business_tickets.count
   end
 

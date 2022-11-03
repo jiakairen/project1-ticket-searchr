@@ -13,17 +13,17 @@ u11 = User.create :email => 'tatal@ga.co', :password => 'chicken', :first_name =
 puts "#{ User.count } users created."
 
 Airline.destroy_all
-a1 = Airline.create :name => 'Qantas Airways', :code => 'QF', :logo => 'https://upload.wikimedia.org/wikipedia/en/0/02/Qantas_Airways_logo_2016.svg'
-a2 = Airline.create :name => 'Virgin Australia', :code => 'VA', :logo => 'https://upload.wikimedia.org/wikipedia/en/0/06/Virgin_Australia_Logo_2022.svg'
-a3 = Airline.create :name => 'Jetstar', :code => 'JQ', :logo => 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Jetstar_logo.svg'
-a4 = Airline.create :name => 'Regional Express', :code => 'ZL', :logo => 'https://upload.wikimedia.org/wikipedia/commons/4/49/Rex_Airlines_logo.svg'
-a5 = Airline.create :name => 'Air New Zealand', :code => 'NZ', :logo => 'https://upload.wikimedia.org/wikipedia/commons/9/97/Air_New_Zealand_logo.svg'
-a6 = Airline.create :name => 'British Airways', :code => 'BA', :logo => 'https://upload.wikimedia.org/wikipedia/en/4/42/British_Airways_Logo.svg'
-a7 = Airline.create :name => 'Lufthansa', :code => 'LH', :logo => 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Lufthansa_Logo_2018.svg'
-a8 = Airline.create :name => 'American Airlines', :code => 'AA', :logo => 'https://upload.wikimedia.org/wikipedia/en/2/23/American_Airlines_logo_2013.svg'
-a9 = Airline.create :name => 'All Nippon Airways', :code => 'NH', :logo => 'https://upload.wikimedia.org/wikipedia/commons/8/8d/All_Nippon_Airways_Logo.svg'
-a10 = Airline.create :name => 'Air Canada', :code => 'AC', :logo => 'https://upload.wikimedia.org/wikipedia/commons/2/24/Air_Canada_Logo.svg'
-a11 = Airline.create :name => 'Jack Air', :code => 'JK', :logo => 'https://img.freepik.com/free-vector/cute-duck-white_1308-41058.jpg?w=2000'
+a1 = Airline.create :name => 'Qantas Airways', :code => 'QF', :logo => 'qf.svg'
+a2 = Airline.create :name => 'Virgin Australia', :code => 'VA', :logo => 'va.svg'
+a3 = Airline.create :name => 'Jetstar', :code => 'JQ', :logo => 'jq.svg'
+a4 = Airline.create :name => 'Regional Express', :code => 'ZL', :logo => 'zl.svg'
+a5 = Airline.create :name => 'Air New Zealand', :code => 'NZ', :logo => 'nz.svg'
+a6 = Airline.create :name => 'British Airways', :code => 'BA', :logo => 'ba.svg'
+a7 = Airline.create :name => 'Lufthansa', :code => 'LH', :logo => 'lh.svg'
+a8 = Airline.create :name => 'American Airlines', :code => 'AA', :logo => 'aa.svg'
+a9 = Airline.create :name => 'All Nippon Airways', :code => 'NH', :logo => 'nh.svg'
+a10 = Airline.create :name => 'Air Canada', :code => 'AC', :logo => 'ac.svg'
+a11 = Airline.create :name => 'Goose Air', :code => 'GA', :logo => 'ga.webp'
 puts "#{ Airline.count } airlines created."
 
 Flight.destroy_all
