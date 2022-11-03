@@ -50,3 +50,4 @@ The flight database is currently using the seed data only. Only very limited fli
 ## Special Thanks
 Special thanks to Loden ([Github Link](https://github.com/Tenzang)) and Joel ([Github Link](https://github.com/wofockham)), our IA and instructor for SEI57 at General Assembly Sydney, Australia, for their guidance throughout the project.
 
+Also cheers Alex ([Github Link](https://github.com/Anico94?tab=repositories)) for numerous suggestions :)

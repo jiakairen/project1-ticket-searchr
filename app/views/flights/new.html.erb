@@ -5,7 +5,7 @@
     </div>
     <div class="col-lg-6">
         <div class="card">
-            <%= image_tag @airline.logo, :class => 'thumbnail card-img-top' %>
+            <%= image_tag(@airline.logo, :class => 'thumbnail card-img-top', :alt => "Logo of #{@airline.name}") %>
             <div class="card-body">
                 <%= form_for [@airline, @flight] do |f| %>
                     <%= f.label :flight_number, :class => 'form-label' %>

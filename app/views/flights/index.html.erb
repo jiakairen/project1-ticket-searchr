@@ -27,7 +27,7 @@
     <% @flights.each do |flight| %>
         <div class="col-lg-4">
             <div class="card">
-                <%= image_tag flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                <%= image_tag flight.airline.logo, :class => 'thumbnail card-img-top', :alt => "Logo of #{flight.airline.name}" %>
                 <div class="card-body">
                     <p class="card-title"><%= flight.airline.code %><%= flight.flight_number %> (<%= flight.airline.name %>)</p>
                     <p class="card-text">From: <%= flight.origin %></p>

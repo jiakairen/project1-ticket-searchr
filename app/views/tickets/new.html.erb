@@ -4,7 +4,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <%= image_tag @flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                <%= image_tag(@flight.airline.logo, :class => 'thumbnail card-img-top', :alt => "Logo of #{@flight.airline.name}") %>
                 <h1 class="card-title text-center"><%= @flight.airline.code%><%= @flight.flight_number %> from <%= @flight.origin %> to <%= @flight.destination %></h1>
                 <h4 class="card-text text-center">Departure: <%= @flight.departure.strftime "%a, %d %b %Y at %H:%M" %></h4>
                 <h4 class="card-text text-center">Arrival: <%= @flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></h4>

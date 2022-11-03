@@ -4,7 +4,7 @@
     <% @airlines.order(:code).each do |airline| %>
         <div class="col-lg-6">
             <div class="card">
-                <%= link_to image_tag(airline.logo, :class => 'thumbnail card-img-top'), airline %>
+                <%= link_to image_tag(airline.logo, :class => 'thumbnail card-img-top', :alt => "Logo of #{airline.name}"), airline %>
             </div>
         </div>
     <% end %>

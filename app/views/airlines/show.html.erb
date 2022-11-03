@@ -3,7 +3,7 @@
     </div>
     <div class="col-lg-6">
         <div class="card">
-            <%= image_tag @airline.logo, :class => 'thumbnail card-img-top' %>
+            <%= image_tag(@airline.logo, :class => 'thumbnail card-img-top', :alt => "Logo of #{@airline.name}") %>
             <h1 class="text-center"><%= @airline.name %> (<%= @airline.code %>)</h1>
             <p class="text-center">Total number of flights on record: <%= @airline.flights.count %></p>
 

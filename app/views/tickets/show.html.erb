@@ -6,7 +6,7 @@
     <div class="col-lg-6">
         <%= form_tag ticket_path do %>
             <div class="card">
-                <%= image_tag @ticket.flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                <%= image_tag(@ticket.flight.airline.logo, :class => 'thumbnail card-img-top', :alt => "Logo of #{@ticket.flight.airline.name}") %>
                 <div class="card-body">
                     <h1 class="card-title text-center"><%= @ticket.flight.airline.code %><%= @ticket.flight.flight_number %> from <%= @ticket.flight.origin %> to <%= @ticket.flight.destination %></h1>
                     <h4 class="card-text text-center">Departure: <%= @ticket.flight.departure.strftime "%a, %d %b %Y at %H:%M" %></h4>
