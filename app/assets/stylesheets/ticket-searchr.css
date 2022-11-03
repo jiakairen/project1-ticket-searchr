@@ -35,10 +35,11 @@ h1 {
     display: inline-block;
 }
 
-.search-button {
+.search-button, .btn-primary {
     margin: 15px auto;
     display: block;
     width: 250px;
+    border: 0px;
 }
 
 .search-fields-container {
@@ -69,4 +70,38 @@ h1 {
 
 .error-msg {
     color: red;
+}
+
+.card-button {
+    max-width: 90%;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.sold-out {
+    background-color: lightgray;
+    color: grey;
+}
+
+.sold-out:hover {
+    background-color: lightgray;
+    color: grey;
+}
+
+.red-button {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+}
+
+.red-button:hover {
+    background-color: red;
+    color: white;
+    border: 1px solid red;
 }

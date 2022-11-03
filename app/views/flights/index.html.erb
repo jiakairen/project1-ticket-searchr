@@ -23,29 +23,38 @@
     <% end %>
 </div>
 
-<% @flights.each do |flight| %>
-    <%= image_tag flight.airline.logo, :class => 'thumbnail' %>
-    <p><%= flight.airline.code %><%= flight.flight_number %> (<%= flight.airline.name %>)</p>
-    <p>From: <%= flight.origin %></p>
-    <p>Departure: <%= flight.departure %></p>
-    <p>To: <%= flight.destination %></p>
-    <p>Arrival: <%= flight.arrival %></p>
-    <% if flight.tickets.where(user_id: nil).any? %>
-        <% prices = [] %>
-        <% flight.tickets.each do |ticket| %>
-            <% prices << ticket.price %>
-            <% @lowest = prices.min %>
-        <% end %>
-        <p><%= pluralize flight.tickets.where(user_id: nil).count, 'seat' %> remaining from <%= number_to_currency @lowest %> - <%= link_to 'Book Now!', flight_path(flight.id) %></p>
-    <% else %>
-        <p>Sold out!</p>
+<div class="row">
+    <% @flights.each do |flight| %>
+        <div class="col-lg-4">
+            <div class="card">
+                <%= image_tag flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                <div class="card-body">
+                    <p class="card-title"><%= flight.airline.code %><%= flight.flight_number %> (<%= flight.airline.name %>)</p>
+                    <p class="card-text">From: <%= flight.origin %></p>
+                    <p class="card-text">Departure: <%= flight.departure.strftime "%a, %d %b %Y at %H:%M" %></p>
+                    <p class="card-text">To: <%= flight.destination %></p>
+                    <p class="card-text">Arrival: <%= flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></p>
+                    <% if flight.tickets.where(user_id: nil).any? %>
+                        <% prices = [] %>
+                        <% flight.tickets.each do |ticket| %>
+                            <% prices << ticket.price %>
+                            <% @lowest = prices.min %>
+                        <% end %>
+                        <p class="card-text"><%= pluralize flight.tickets.where(user_id: nil).count, 'seat' %> remaining from <%= number_to_currency @lowest %></p>
+                        <%= link_to 'Book Now!', flight_path(flight.id), :class => 'btn btn-primary search-button card-button' %>
+                    <% else %>
+                        <p>No seats remaining.</p>
+                        <a href="#" class="btn btn-primary search-button sold-out">Sold Out!</a>
+                    <% end %>
+                    <% if @current_user.present? && @current_user.admin? %>
+                        <%= link_to 'Add Tickets', new_airline_flight_ticket_path(flight.airline.id, flight.id), :class => 'btn btn-primary card-button' %>
+                        <%= link_to 'Delete Flight', flight, :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-primary search-button card-button red-button' %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     <% end %>
-    <% if @current_user.present? && @current_user.admin? %>
-        <%= link_to 'Add Tickets', new_airline_flight_ticket_path(flight.airline.id, flight.id) %>
-        <%= link_to 'Delete Flight', flight, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
-    <% end %>
-    <p>-------------------------</p>
-<% end %>
+</div>
 
 <% unless @flights.present? %>
     <p>No direct flights found.</p>
@@ -53,5 +62,3 @@
         <p>Try: <%= r.join(' -> ') %></p>
     <% end %>
 <% end %>
-    
-<p>End of search.</p>

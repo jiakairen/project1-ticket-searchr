@@ -1,10 +1,20 @@
-<h1>Add Tickets to <%= @flight.airline.code%><%= @flight.flight_number %></h1>
-
-<%= image_tag @flight.airline.logo, :class => 'thumbnail' %>
-
-<p>From: <%= @flight.origin %></p>
-<p>To: <%= @flight.destination %></p>
-<p>Departure time: <%= @flight.departure %></p>
-<p>Arrival time: <%= @flight.arrival %></p>
-
-<%= render :partial => 'form' %>
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <%= image_tag @flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                <h1 class="card-title text-center"><%= @flight.airline.code%><%= @flight.flight_number %> from <%= @flight.origin %> to <%= @flight.destination %></h1>
+                <h4 class="card-text text-center">Departure: <%= @flight.departure.strftime "%a, %d %b %Y at %H:%M" %></h4>
+                <h4 class="card-text text-center">Arrival: <%= @flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></h4>
+            </div>
+            <div class="card-body">
+                <p class="card-title text-center">New ticket information</p>
+                <%= render :partial => 'form' %>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    </div>
+</div>

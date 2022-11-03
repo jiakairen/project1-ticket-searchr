@@ -1,22 +1,45 @@
-<h1><%= @flight.airline.code %><%= @flight.flight_number %></h1>
-<%= image_tag @flight.airline.logo, :class => 'thumbnail' %>
-<p>From: <%= @flight.origin %></p>
-<p>To: <%= @flight.destination %></p>
-<p>Departure time: <%= @flight.departure %></p>
-<p>Arrival time: <%= @flight.arrival %></p>
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <%= image_tag @flight.airline.logo, :class => 'thumbnail card-img-top' %>
+            <div class="card-body">
+                <h1 class="card-title text-center"><%= @flight.airline.code %><%= @flight.flight_number %> from <%= @flight.origin %> to <%= @flight.destination %></h1>
+                <h4 class="card-text text-center">Departure: <%= @flight.departure.strftime "%a, %d %b %Y at %H:%M" %></h4>
+                <h4 class="card-text text-center">Arrival: <%= @flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></h4>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    <% if @economy_tickets.any? %>
+                        <p class="card-title text-center">Economy</p>
+                        <p class="card-title text-center"><%= number_to_currency @economy_tickets.first.price %></p>
+                        <p class="card-text text-center">(<%= pluralize @economy_available, "seat" %> remaining)</p>
+                        <%= link_to 'Book Economy', ticket_path(@economy_tickets.first.id), :class => 'btn btn-primary search-button card-button' %> 
+                    <% else %>
+                        <p class="card-title text-center">Economy unavailable - Sold out.</p>
+                    <% end %>
+                </div>
 
-<% if @economy_tickets.any? %>
-    <p><%= number_to_currency @economy_tickets.first.price %> - <%= link_to 'Book Economy', ticket_path(@economy_tickets.first.id) %> (<%= pluralize @economy_available, "seat" %> remaining)</p>
-<% else %>
-    <p>Economy unavailable - Sold out.</p>
-<% end %>
+                <div class="card-body">
+                    <% if @business_tickets.any? %>
+                        <p class="card-title text-center">Business</p>
+                        <p class="card-title text-center"><%= number_to_currency @business_tickets.first.price %></p>
+                        <p class="card-text text-center">(<%= pluralize @business_available, "seat" %> remaining)</p>
+                        <%= link_to 'Book Business', ticket_path(@business_tickets.first.id), :class => 'btn btn-primary search-button card-button' %> 
+                    <% else %>
+                        <p class="card-title text-center">Business unavailable - Sold out.</p>
+                    <% end %>
+                </div>
 
-<% if @business_tickets.any? %>
-    <p><%= number_to_currency @business_tickets.first.price %> - <%= link_to 'Book Business', ticket_path(@business_tickets.first.id) %> (<%= pluralize @business_available, "seat" %> remaining)</p>
-<% else %>
-    <p>Business unavailable - Sold out.</p>
-<% end %>
-
-<% if @current_user.present? && @current_user.admin? %>
-    <%= link_to 'Add Tickets', new_airline_flight_ticket_path(@flight.airline.id, @flight.id) %>
-<% end %>
+                <div class="card-body">
+                    <% if @current_user.present? && @current_user.admin? %>
+                        <%= link_to 'Add Tickets', new_airline_flight_ticket_path(@flight.airline.id, @flight.id), :class => 'btn btn-primary search-button card-button' %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    </div>
+</div>

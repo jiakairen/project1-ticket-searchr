@@ -1,18 +1,36 @@
-<h1>Welcome <%= @current_user.first_name.present? ? "#{ @current_user.first_name } #{ @current_user.last_name }" : @current_user.email %></h1>
-<h2>Your bookings:</h2>
+<h1 class="text-center">Welcome back <%= @current_user.first_name.present? ? "#{ @current_user.first_name } #{ @current_user.last_name }" : @current_user.email %>!</h1>
 
-<% if @tickets.any? %>
-    <% @tickets.each do |ticket| %>
-        <h4><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %></h4>
-        <%= image_tag ticket.flight.airline.logo, :class => 'thumbnail' %>
-        <p>From <%= ticket.flight.origin %> to <%= ticket.flight.destination %></p>
-        <p>Departure: <%= ticket.flight.departure %>, arrival: <%= ticket.flight.arrival%></p>
-        <p>Travelling class: <%= ticket.class_type %></p>
-        <p>Fare paid: <%= number_to_currency ticket.price %></p>
-        <%= link_to "Cancel Booking", cancel_path(ticket.id) %>
-        <p>----------</p>
+<div class="row">
+    <% if @tickets.any? %>
+        <h3>Your bookings:</h3>
+        <% @tickets.each do |ticket| %>
+            <div class="col-lg-4">
+                <div class="card">
+                    <%= image_tag ticket.flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                    <div class="card-body">
+                        <p class="card-title"><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %></p>
+                        <p class="card-text">From <%= ticket.flight.origin %> to <%= ticket.flight.destination %></p>
+                        <p class="card-text">Departure: <%= ticket.flight.departure.strftime "%a, %d %b %Y at %H:%M" %></p>
+                        <p class="card-text">Arrival: <%= ticket.flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></p>
+                        <p class="card-text">Travelling class: <%= ticket.class_type %></p>
+                        <p class="card-text">Fare paid: <%= number_to_currency ticket.price %></p>
+                        <%= link_to "Cancel Booking", cancel_path(ticket.id), :class => 'btn btn-primary search-button card-button red-button' %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title text-center">You don't have any bookings.</p>
+                    <%= link_to 'Book now!', flights_path, :class => 'btn btn-primary search-button card-button' %>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+        </div>
     <% end %>
-    <p>End of record.</p>
-<% else %>
-    <p>You don't have any bookings. <%= link_to 'Book now!', flights_path %></p>
-<% end %>
+</div>
