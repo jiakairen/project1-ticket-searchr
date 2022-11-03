@@ -1,15 +1,15 @@
 <%= form_for @airline do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name, :required => true, :placeholder => "Goose Air" %>
+    <%= f.label :name, :class => 'form-label' %>
+    <%= f.text_field :name, :required => true, :placeholder => "Goose Air", :class => 'form-control' %>
 
-    <%= f.label :code, "IATA Code" %>
-    <%= f.text_field :code, :required => true, :placeholder => "GA" %>
+    <%= f.label :code, "IATA Code", :class => 'form-label' %>
+    <%= f.text_field :code, :required => true, :placeholder => "GA", :class => 'form-control' %>
 
-    <%= f.label :logo, "Logo Link" %>
-    <%= f.text_field :logo, :required => true %>
+    <%= f.label :logo, "Logo Link", :class => 'form-label' %>
+    <%= f.text_field :logo, :required => true, :class => 'form-control' %>
 
-    <%= f.label :country, "Country of Registration" %>
-    <%= f.text_field :country, :placeholder => "Australia" %>
+    <%= f.label :country, "Country of Registration", :class => 'form-label' %>
+    <%= f.text_field :country, :placeholder => "Australia", :class => 'form-control' %>
 
-    <%= f.submit %>
+    <%= f.submit({:class => "search-button btn btn-primary"}) %>
 <% end %>

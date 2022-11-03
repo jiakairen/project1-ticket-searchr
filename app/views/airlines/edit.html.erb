@@ -1,3 +1,16 @@
-<h1>Edit <%= @airline.name %> (<%= @airline.code%>)</h1>
 
-<%= render :partial => 'form' %>
+
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center">Edit <%= @airline.name %> (<%= @airline.code%>)</h1>
+                <%= render :partial => 'form' %>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    </div>
+</div>

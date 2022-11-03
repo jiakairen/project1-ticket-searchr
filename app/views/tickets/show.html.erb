@@ -1,5 +1,24 @@
-<h1>Complete Your Transaction</h1>
+<h1 class="text-center">Complete Your Transaction</h1>
 
-<%= form_tag ticket_path do %>
-    <%= submit_tag "Pay Now" %>
-<% end %>
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+        <%= form_tag ticket_path do %>
+            <div class="card">
+                <%= image_tag @ticket.flight.airline.logo, :class => 'thumbnail card-img-top' %>
+                <div class="card-body">
+                    <h1 class="card-title text-center"><%= @ticket.flight.airline.code %><%= @ticket.flight.flight_number %> from <%= @ticket.flight.origin %> to <%= @ticket.flight.destination %></h1>
+                    <h4 class="card-text text-center">Departure: <%= @ticket.flight.departure.strftime "%a, %d %b %Y at %H:%M" %></h4>
+                    <h4 class="card-text text-center">Arrival: <%= @ticket.flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></h4>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-text text-center">Travelling class: <%= @ticket.class_type %></h4>
+                </div>
+                <%= submit_tag "Pay #{ number_to_currency @ticket.price }", :class => 'btn btn-primary search-button card-button' %>
+            </div>
+        <% end %>
+    </div>
+    <div class="col-lg-3">
+    </div>
+</div>

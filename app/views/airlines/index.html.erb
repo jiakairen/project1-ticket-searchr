@@ -1,7 +1,16 @@
-<h1>Browse our Airlines</h1>
+<h1 class="text-center">All Airlines in System</h1>
 
-<% @airlines.each do |airline| %>
-    <%= link_to image_tag(airline.logo, :class => 'thumbnail'), airline %>
-<% end %>
-
-<%= link_to 'Add Airline', new_airline_path %>
+<div class="row">
+    <% @airlines.order(:code).each do |airline| %>
+        <div class="col-lg-6">
+            <div class="card">
+                <%= link_to image_tag(airline.logo, :class => 'thumbnail card-img-top'), airline %>
+            </div>
+        </div>
+    <% end %>
+    <div class="col-lg-6">
+        <div class="card">
+            <%= link_to 'Add Airline', new_airline_path, :class => 'btn btn-primary search-button card-button' %>
+        </div>
+    </div>
+</div>

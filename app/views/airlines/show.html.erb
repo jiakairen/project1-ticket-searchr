@@ -1,10 +1,17 @@
-<h1><%= @airline.name %> (<%= @airline.code %>)</h1>
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <%= image_tag @airline.logo, :class => 'thumbnail card-img-top' %>
+            <h1 class="text-center"><%= @airline.name %> (<%= @airline.code %>)</h1>
+            <p class="text-center">Total number of flights on record: <%= @airline.flights.count %></p>
 
-<%= image_tag @airline.logo, :class => 'thumbnail' %>
-
-<p>Total number of flights on record: <%= @airline.flights.count %></p>
-
-<%= link_to "Add more #{ @airline.code } flights to system", new_airline_flight_path(@airline.id) %>
-
-<%= link_to 'Edit Airline', edit_airline_path(@airline) %>
-<%= link_to "Delete Airline", @airline, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
+            <%= link_to "Add more #{ @airline.code } Flights", new_airline_flight_path(@airline.id), :class => "search-button btn btn-primary" %>
+            <%= link_to 'Edit Airline', edit_airline_path(@airline), :class => "btn btn-primary" %>
+            <%= link_to "Delete Airline", @airline, :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => "search-button btn btn-primary red-button" %>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    </div>
+</div>

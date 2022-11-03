@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_action :check_for_login
   def show
+    @ticket = Ticket.find params[:id]
   end
 
   def new
