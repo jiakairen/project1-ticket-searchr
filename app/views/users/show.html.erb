@@ -1,4 +1,4 @@
-<h1 class="text-center">Welcome back <%= @current_user.first_name.present? ? "#{ @current_user.first_name } #{ @current_user.last_name }" : @current_user.email %>!</h1>
+<h1 class="text-center">Welcome back <%= @user.first_name.present? ? "#{ @user.first_name } #{ @user.last_name }" : @user.email %>!</h1>
 
 <div class="row">
     <% if @tickets.any? %>
@@ -8,8 +8,7 @@
                 <div class="card">
                     <%= image_tag ticket.flight.airline.logo, :class => 'thumbnail card-img-top' %>
                     <div class="card-body">
-                        <p class="card-title"><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %></p>
-                        <p class="card-text">From <%= ticket.flight.origin %> to <%= ticket.flight.destination %></p>
+                        <p class="card-title text-center"><%= ticket.flight.airline.code %><%= ticket.flight.flight_number %> from <%= ticket.flight.origin %> to <%= ticket.flight.destination %></p>
                         <p class="card-text">Departure: <%= ticket.flight.departure.strftime "%a, %d %b %Y at %H:%M" %></p>
                         <p class="card-text">Arrival: <%= ticket.flight.arrival.strftime "%a, %d %b %Y at %H:%M" %></p>
                         <p class="card-text">Travelling class: <%= ticket.class_type %></p>
@@ -34,3 +33,7 @@
         </div>
     <% end %>
 </div>
+
+<% if @tickets.any? %>
+    <%= link_to 'Generate Itinerary', user_path(@user, :format => 'pdf'), :method => 'get', :target => '_blank', :class => "btn btn-primary search-button" %>
+<% end %>

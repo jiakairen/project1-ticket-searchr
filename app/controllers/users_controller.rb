@@ -22,8 +22,14 @@ class UsersController < ApplicationController
 
   def show
     check_for_account_match params[:id]
-    user = User.find params[:id]
-    @tickets = user.tickets
+    @user = User.find params[:id]
+    @tickets = @user.tickets.joins(:flight).order(:departure)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Itinerary for #{@user.first_name.present? ? "#{ @user.first_name } #{ @user.last_name }" : @user.email}", template: "users/itinerary.html.erb"
+      end
+    end
   end
 
   def edit

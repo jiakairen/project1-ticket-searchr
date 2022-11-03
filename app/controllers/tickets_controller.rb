@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
   before_action :check_for_login
   def show
     @ticket = Ticket.find params[:id]
+    check_for_ticket_availability @ticket
   end
 
   def new
@@ -29,6 +30,7 @@ class TicketsController < ApplicationController
 
   def cancel
     @ticket = Ticket.find params[:id]
+    check_for_ticket_ownership @ticket
   end
 
   def unlink

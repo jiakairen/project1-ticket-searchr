@@ -9,6 +9,8 @@ class FlightsController < ApplicationController
       destination = params[:search_by_destination]
       # raise "hell"
       @flights = search_direct all_flights, date, origin, destination
+      @flights.order!(:departure)
+
       unless @flights.any?
         @viable_routes = search_route all_flights, date, origin, destination
       end

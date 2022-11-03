@@ -24,4 +24,18 @@ class ApplicationController < ActionController::Base
             return false
         end
     end
+
+    def check_for_ticket_ownership ticket
+        if session[:user_id] != ticket.user_id
+            session[:user_id] = nil
+            redirect_to login_path
+        end
+    end
+
+    def check_for_ticket_availability ticket
+        if ticket.user_id.present?
+            session[:user_id] = nil
+            redirect_to login_path
+        end
+    end
 end

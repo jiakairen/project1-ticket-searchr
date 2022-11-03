@@ -1,0 +1,33 @@
+<hr>
+<h1 align="center">Itinerary for <%= @user.first_name.present? ? "#{ @user.first_name } #{ @user.last_name }" : @user.email %></h1>
+<hr>
+
+<table cellpadding="15">
+    <tr>
+        <th>Date</th>
+        <th>Carrier</th>
+        <th>Flight</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Class</th>
+    </tr>
+    <% @tickets.each do |ticket| %>
+        <tr>
+            <td><%= ticket.flight.departure.strftime "%-d %b %Y" %></td>
+            <td><%= ticket.flight.airline.name %></td>
+            <td><%= ticket.flight.airline.code %><%= ticket.flight.flight_number%></td>
+            <td><%= ticket.flight.origin %></td>
+            <td><%= ticket.flight.destination %></td>
+            <td><%= ticket.flight.departure.strftime "%H:%M" %></td>
+            <td><%= ticket.flight.arrival.strftime "%H:%M" %></td>
+            <td><%= ticket.class_type %></td>
+        </tr>
+    <% end %>
+</table>
+
+<hr>
+<p align="center">End of record.</p>
+<hr>
+<p>Information is accurate at the time of generation of this PDF. (<%= Time.now %>)</p>
