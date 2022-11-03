@@ -110,3 +110,7 @@ h1 {
     width: 100%;
     object-fit: contain;
 }
+
+.add-button {
+    margin: 27px auto;
+}

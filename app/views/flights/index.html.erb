@@ -52,7 +52,9 @@
 </div>
 
 <% unless @flights.present? %>
-    <p>No direct flights found.</p>
+    <% if @viable_routes.any? %>
+        <p>No direct flights found.</p>
+    <% end %>
     <% @viable_routes.each do |r| %>
         <p>Try: <%= r.join(' -> ') %></p>
     <% end %>
