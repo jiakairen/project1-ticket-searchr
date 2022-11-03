@@ -1,15 +1,15 @@
 User.destroy_all
-u1 = User.create :email => 'alex@ga.co', :password => 'chicken', :first_name => 'Alex', :last_name => 'Nicolaidis', :balance => 0
-u2 = User.create :email => 'gissell@ga.co', :password => 'chicken', :first_name => 'Gissell', :last_name => 'Bustos', :balance => 0
-u3 = User.create :email => 'isabel@ga.co', :password => 'chicken', :first_name => 'Isabel', :last_name => 'Sousa-Cruz', :balance => 0
-u4 = User.create :email => 'jason@ga.co', :password => 'chicken', :first_name => 'Jason', :last_name => 'Luo', :balance => 0
-u5 = User.create :email => 'jack@ga.co', :password => 'chicken', :first_name => 'Jack', :last_name => 'Ren', :balance => 10000, :admin => true
-u6 = User.create :email => 'josh@ga.co', :password => 'chicken', :first_name => 'Joshua', :last_name => 'Luo', :balance => 0
-u7 = User.create :email => 'keshia@ga.co', :password => 'chicken', :first_name => 'Keshia', :last_name => 'Wijaya', :balance => 0
-u8 = User.create :email => 'michael@ga.co', :password => 'chicken', :first_name => 'Michael', :last_name => 'Anderson', :balance => 0
-u9 = User.create :email => 'kylie@ga.co', :password => 'chicken', :first_name => 'Kylie', :last_name => 'Xu', :balance => 0
-u10 = User.create :email => 'sophia@ga.co', :password => 'chicken', :first_name => 'Sophia', :last_name => 'Pache', :balance => 0
-u11 = User.create :email => 'tatal@ga.co', :password => 'chicken', :first_name => 'Talal', :last_name => ' Hamzeh', :balance => 0
+u1 = User.create :email => 'alex@ga.co', :password => 'chicken', :first_name => 'Alex', :last_name => 'Seed', :balance => 0
+u2 = User.create :email => 'gissell@ga.co', :password => 'chicken', :first_name => 'Gissell', :last_name => 'Seed', :balance => 0
+u3 = User.create :email => 'isabel@ga.co', :password => 'chicken', :first_name => 'Isabel', :last_name => 'Seed', :balance => 0
+u4 = User.create :email => 'jason@ga.co', :password => 'chicken', :first_name => 'Jason', :last_name => 'Seed', :balance => 0
+u5 = User.create :email => 'jack@ga.co', :password => 'chicken', :first_name => 'Jack', :last_name => 'Seed', :balance => 0, :admin => true
+u6 = User.create :email => 'josh@ga.co', :password => 'chicken', :first_name => 'Joshua', :last_name => 'Seed', :balance => 0
+u7 = User.create :email => 'keshia@ga.co', :password => 'chicken', :first_name => 'Keshia', :last_name => 'Seed', :balance => 0
+u8 = User.create :email => 'michael@ga.co', :password => 'chicken', :first_name => 'Michael', :last_name => 'Seed', :balance => 0
+u9 = User.create :email => 'kylie@ga.co', :password => 'chicken', :first_name => 'Kylie', :last_name => 'Seed', :balance => 0
+u10 = User.create :email => 'sophia@ga.co', :password => 'chicken', :first_name => 'Sophia', :last_name => 'Seed', :balance => 0
+u11 = User.create :email => 'tatal@ga.co', :password => 'chicken', :first_name => 'Talal', :last_name => ' Seed', :balance => 0
 puts "#{ User.count } users created."
 
 Airline.destroy_all
