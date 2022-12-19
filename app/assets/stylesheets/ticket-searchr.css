@@ -1,125 +1,125 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .bg-image {
-    background-image: url('home.jpeg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-blend-mode: darken;
+  /* background-image: url('home.jpeg'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: darken;
 }
 
 h1 {
-    margin: 10px;
+  margin: 10px;
 }
 
 .thumbnail {
-    height: 50px;
-    margin: 20px auto;
+  height: 50px;
+  margin: 20px auto;
 }
 
 .center-div {
-    margin: 0 auto;
-    border-bottom: 2px solid #3e3d39;
-    padding-bottom: 10px;
+  margin: 0 auto;
+  border-bottom: 2px solid #3e3d39;
+  padding-bottom: 10px;
 }
 
 .nav-container-center {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .navbar-brand-right {
-    width: 120px;
-    text-align: right;
-    color: #3e3d39
+  width: 120px;
+  text-align: right;
+  color: #3e3d39;
 }
 
 .navbar-brand-right:hover {
-    color: #3e3d39
+  color: #3e3d39;
 }
 
 .search-field {
-    display: inline-block;
+  display: inline-block;
 }
 
-.search-button, .btn-primary {
-    margin: 15px auto;
-    display: block;
-    width: 250px;
-    border: 0px;
+.search-button,
+.btn-primary {
+  margin: 15px auto;
+  display: block;
+  width: 250px;
+  border: 0px;
 }
 
 .search-fields-container {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .dropdown-item:active {
-    background-color: #3e3d39;
+  background-color: #3e3d39;
 }
 
 .search-button {
-    background-color: #3e3d39;
+  background-color: #3e3d39;
 }
 
 .search-button:hover {
-    background-color: #282824;
+  background-color: #282824;
 }
 
 .search-button:active {
-    background-color: #14130e;
+  background-color: #14130e;
 }
 
 .half-container {
-    max-width: 400px;
-    margin: 20px auto;
+  max-width: 400px;
+  margin: 20px auto;
 }
 
 .error-msg {
-    color: red;
+  color: red;
 }
 
 .card-button {
-    max-width: 90%;
+  max-width: 90%;
 }
 
 .card {
-    margin: 10px;
+  margin: 10px;
 }
 
 .card-title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .sold-out {
-    background-color: lightgray;
-    color: grey;
+  background-color: lightgray;
+  color: grey;
 }
 
 .sold-out:hover {
-    background-color: lightgray;
-    color: grey;
+  background-color: lightgray;
+  color: grey;
 }
 
 .red-button {
-    background-color: white;
-    color: red;
-    border: 1px solid red;
+  background-color: white;
+  color: red;
+  border: 1px solid red;
 }
 
 .red-button:hover {
-    background-color: red;
-    color: white;
-    border: 1px solid red;
+  background-color: red;
+  color: white;
+  border: 1px solid red;
 }
 
 .card-img-top {
-    width: 100%;
-    object-fit: contain;
+  width: 100%;
+  object-fit: contain;
 }
 
 .add-button {
-    margin: 27px auto;
+  margin: 27px auto;
 }
-
