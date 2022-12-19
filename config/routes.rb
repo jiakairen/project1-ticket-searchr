@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root :to => 'flights#index'
-  resources :users, :only => [:new, :create, :edit, :index, :show, :update]
+  resources :users, :except => [:destroy]
   resources :flights, :except => [:new, :create]
   resources :airlines do
     resources :flights, :only => [:new, :create] do

@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+.bg-image {
+    background-image: url('home.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
 h1 {
     margin: 10px;
 }
@@ -114,3 +122,4 @@ h1 {
 .add-button {
     margin: 27px auto;
 }
+

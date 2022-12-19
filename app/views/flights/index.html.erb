@@ -1,26 +1,28 @@
-<h1 class="text-center">Search for flights</h1>
+<div class="bg-image">
+    <h1 class="text-center">Search for flights</h1>
 
-<div class="center-div">
-    <%= form_tag '/flights', method: "GET" do %>
-        <div class="search-fields-container">
-            <div class="col-md-3 search-field">
-                <%= label_tag :search_by_origin, "Origin: ", :class => "form-label" %>
-                <%= text_field_tag :search_by_origin, params[:search_by_origin], :required => true, :class => "form-control", :placeholder => 'SYD' %>
+    <div class="center-div">
+        <%= form_tag '/flights', method: "GET" do %>
+            <div class="search-fields-container">
+                <div class="col-md-3 search-field">
+                    <%= label_tag :search_by_origin, "Origin: ", :class => "form-label" %>
+                    <%= text_field_tag :search_by_origin, params[:search_by_origin], :required => true, :class => "form-control", :placeholder => 'SYD' %>
+                </div>
+
+                <div class="col-md-3 search-field">
+                    <%= label_tag :search_by_destination, "Destination: ", :class => "form-label" %>
+                    <%= text_field_tag :search_by_destination, params[:search_by_destination], :required => true, :class => "form-control", :placeholder => 'BNE' %>
+                </div>
+
+                <div class="col-md-3 search-field">
+                    <%= label_tag :search_by_date, "Departure Date: ", :class => "form-label" %>
+                    <%= date_field_tag :search_by_date, params[:search_by_date], :required => true, :class => "form-control" %>
+                </div>
             </div>
 
-            <div class="col-md-3 search-field">
-                <%= label_tag :search_by_destination, "Destination: ", :class => "form-label" %>
-                <%= text_field_tag :search_by_destination, params[:search_by_destination], :required => true, :class => "form-control", :placeholder => 'BNE' %>
-            </div>
-
-            <div class="col-md-3 search-field">
-                <%= label_tag :search_by_date, "Departure Date: ", :class => "form-label" %>
-                <%= date_field_tag :search_by_date, params[:search_by_date], :required => true, :class => "form-control" %>
-            </div>
-        </div>
-
-            <%= submit_tag "Search", :class => "search-button btn btn-primary" %>
-    <% end %>
+                <%= submit_tag "Search", :class => "search-button btn btn-primary" %>
+        <% end %>
+    </div>
 </div>
 
 <div class="row">
